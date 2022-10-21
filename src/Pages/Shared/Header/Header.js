@@ -33,7 +33,7 @@ const Header = () => {
             <NavLink>Pricing</NavLink>
           </Nav>
           <Nav>
-            <NavLink>
+            <>
               {user?.uid ? (
                 <>
                   <span>{user?.displayName}</span>
@@ -47,8 +47,8 @@ const Header = () => {
                   <Link to="/register">Register</Link>
                 </>
               )}
-            </NavLink>
-            <NavLink>
+            </>
+            <Link to="/profile">
               {user?.photoURL ? (
                 <Image
                   roundedCircle
@@ -58,7 +58,7 @@ const Header = () => {
               ) : (
                 <FaUser></FaUser>
               )}
-            </NavLink>
+            </Link>
           </Nav>
           <div className="d-lg-none">
             <LeftSideNav></LeftSideNav>
