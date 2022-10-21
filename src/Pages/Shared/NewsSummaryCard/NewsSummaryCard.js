@@ -29,7 +29,7 @@ const NewsSummaryCard = ({ news }) => {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Img variant="top" src={image_url} />
-        <Card.Text>
+        <div>
           {details.length > 200 ? (
             <p>
               {details.slice(0, 250) + "..."}
@@ -38,7 +38,7 @@ const NewsSummaryCard = ({ news }) => {
           ) : (
             <p>{details}</p>
           )}
-        </Card.Text>
+        </div>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-between align-items-center">
         <div>

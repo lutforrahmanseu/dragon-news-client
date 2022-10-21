@@ -66,3 +66,13 @@ react icon
 1.react icon install
 2.rect font awesome
 */
+
+/*
+context api integrate
+1.context folder create 
+2.then contexts share js file create
+3.Auth provider 
+4.uses index.js fill 
+
+
+*/

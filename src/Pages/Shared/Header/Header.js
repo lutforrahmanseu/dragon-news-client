@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Button, Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import LeftSideNav from "../LeftSideNav/LeftSideNav";
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {});
+  };
   return (
     <Navbar
       collapseOnSelect
@@ -20,14 +29,36 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">All News</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <NavLink>All News</NavLink>
+            <NavLink>Pricing</NavLink>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
+            <NavLink>
+              {user?.uid ? (
+                <>
+                  <span>{user?.displayName}</span>
+                  <Button onClick={handleLogOut} variant="light">
+                    Log Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login">Login</Link>
+                  <Link to="/register">Register</Link>
+                </>
+              )}
+            </NavLink>
+            <NavLink>
+              {user?.photoURL ? (
+                <Image
+                  roundedCircle
+                  style={{ height: "20px" }}
+                  src={user?.photoURL}
+                ></Image>
+              ) : (
+                <FaUser></FaUser>
+              )}
+            </NavLink>
           </Nav>
           <div className="d-lg-none">
             <LeftSideNav></LeftSideNav>
