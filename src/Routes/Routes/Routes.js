@@ -23,7 +23,9 @@ export const routes = createBrowserRouter([
         path: "/category/:id",
         element: <Category></Category>,
         loader: ({ params }) =>
-          fetch(`https://dragon-news-server-rust.vercel.app/${params.id}`),
+          fetch(
+            `https://dragon-news-server-rust.vercel.app/category/${params.id}`
+          ),
       },
       {
         path: "/news/:id",
